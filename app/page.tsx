@@ -2,7 +2,7 @@ export default function Login() {
   return (
     <main
       className="relative min-h-screen flex items-center justify-center overflow-hidden bg-cover bg-center"
-      style={{ backgroundImage: "url('/bg-dark.jpg')" }}
+      style={{ backgroundImage: "url('/bg-white.jpg')" }}
     > 
       {/* overlay para contraste */}
       <div className="absolute inset-0 bg-[#02121a]/75"></div>

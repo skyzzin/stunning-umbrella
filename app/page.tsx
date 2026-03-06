@@ -56,7 +56,7 @@ export default function Login() {
           {/* loading */}
           <div className="flex items-center justify-center gap-2 text-cyan-300 text-sm mt-4">
             <div className="w-4 h-4 border-2 border-cyan-300 border-t-transparent rounded-full animate-spin"></div>
-            Entrando no portal...
+            Entrando na Roda...
           </div>
 
           <p className="text-gray-400 text-xs mt-4">

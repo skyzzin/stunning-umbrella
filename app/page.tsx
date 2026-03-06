@@ -14,7 +14,7 @@ export default function Login() {
       <div className="relative z-10 w-full max-w-md px-6">
 
         {/* borda glow */}
-        <div
+        <div   
           className="p-[2px] rounded-2xl
           bg-gradient-to-r from-cyan-400/40 via-blue-400/20 to-cyan-400/40
           shadow-[0_0_50px_rgba(0,200,255,0.35)]"

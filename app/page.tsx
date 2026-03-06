@@ -44,13 +44,30 @@ export default function Login() {
             />
           </div>
 
-          {/* botão */}
-          <button className="w-full py-3 rounded-lg font-semibold text-white
-          bg-gradient-to-r from-cyan-500 to-blue-500
-          shadow-lg shadow-cyan-500/30
-          hover:scale-[1.03] hover:shadow-cyan-400/50
-          transition">
-            Entrar na Roda
+          <button
+            className="
+  relative w-full py-3 rounded-lg font-semibold text-white
+  bg-gradient-to-b from-cyan-300 via-cyan-500 to-blue-600
+  border border-cyan-200/40
+  shadow-[0_0_12px_rgba(0,255,255,0.4)]
+  overflow-hidden
+  hover:brightness-110
+  active:scale-[0.98]
+  transition
+"
+          >
+            {/* brilho superior */}
+            <span className="pointer-events-none absolute inset-0 rounded-lg
+  bg-gradient-to-b from-white/40 via-white/10 to-transparent
+  opacity-60"></span>
+
+            {/* glow interno */}
+            <span className="pointer-events-none absolute inset-[2px] rounded-md
+  shadow-[inset_0_2px_6px_rgba(255,255,255,0.35)]"></span>
+
+            <span className="relative z-10">
+              Entrar na Roda...
+            </span>
           </button>
 
           {/* loading */}

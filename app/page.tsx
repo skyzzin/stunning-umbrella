@@ -50,7 +50,7 @@ export default function Login() {
           shadow-lg shadow-cyan-500/30
           hover:scale-[1.03] hover:shadow-cyan-400/50
           transition">
-            Entrar no Portal
+            Entrar na Roda
           </button>
 
           {/* loading */}

@@ -11,12 +11,10 @@ export default function Login() {
       shadow-[0_0_50px_rgba(0,200,255,0.35)]">
 
         {/* card */}
-        <div className="backdrop-blur-xl bg-[#071b24]/90 border border-white/10 rounded-2xl p-8 text-center">
+        <div className="backdrop-blur-xl bg-[#0D1E30]/90 border border-white/10 rounded-2xl p-8 text-center">
 
           {/* logo */}
-          <h1 className="text-3xl font-bold text-cyan-400 mb-1 tracking-wider">
-            CTE
-          </h1>
+          <img src="/logo.png" alt="" />
 
           <h2 className="text-xl text-white font-semibold mb-2">
             Portal do Aluno
@@ -62,7 +60,7 @@ export default function Login() {
           </div>
 
           <p className="text-gray-400 text-xs mt-4">
-            Dica: utilize o e-mail cadastrado pela secretaria.
+            Dica: utilize o e-mail cadastrado na matricula
           </p>
 
         </div>
@@ -70,3 +68,4 @@ export default function Login() {
     </div>
   )
 }
+

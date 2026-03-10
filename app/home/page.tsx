@@ -40,98 +40,118 @@ export default function Home() {
   }
 
   return (
-    <div className="min-h-screen bg-slate-900 text-white p-10">
+
+    <div className="min-h-screen bg-gray-50 text-gray-800 p-10">
 
       <div className="max-w-6xl mx-auto">
 
-        <div className="flex justify-between mb-6">
-          <h1 className="text-2xl font-bold">Alunos</h1>
+        <div className="flex justify-between items-center mb-6">
+
+          <h1 className="text-2xl font-bold">
+            Gestão de Alunos
+          </h1>
 
           <button
             onClick={()=> setModalOpen(true)}
-            className="bg-cyan-500 px-4 py-2 rounded"
+            className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
           >
             Cadastrar aluno
           </button>
+
         </div>
 
-        <table className="w-full bg-slate-800 rounded">
+        <div className="bg-white shadow rounded-lg overflow-hidden">
 
-          <thead className="text-left border-b border-white/10">
-            <tr>
-              <th className="p-3">ID</th>
-              <th>Nome</th>
-              <th>Apelido</th>
-              <th>Celular</th>
-              <th>Email</th>
-              <th>Nascimento</th>
-              <th>Ações</th>
-            </tr>
-          </thead>
+          <table className="w-full">
 
-          <tbody>
+            <thead className="bg-gray-100 text-left">
 
-            {alunos.map(aluno => (
+              <tr>
 
-              <tr key={aluno.id} className="border-b border-white/5">
-
-                <td className="p-3">{aluno.id}</td>
-                <td>{aluno.nomecompleto}</td>
-                <td>{aluno.apelido}</td>
-                <td>{aluno.celular}</td>
-                <td>{aluno.email}</td>
-                <td>{aluno.nascimento}</td>
-
-                <td className="flex gap-2 py-3">
-
-                  <button
-                    className="bg-yellow-500 px-2 py-1 rounded"
-                    onClick={()=>{
-                      setEditAluno(aluno)
-                      setModalOpen(true)
-                    }}
-                  >
-                    Editar
-                  </button>
-
-                  <button
-                    className="bg-red-500 px-2 py-1 rounded"
-                    onClick={()=> setDeleteAluno(aluno)}
-                  >
-                    Excluir
-                  </button>
-
-                </td>
+                <th className="p-3">ID</th>
+                <th className="p-3">Nome</th>
+                <th className="p-3">Apelido</th>
+                <th className="p-3">Celular</th>
+                <th className="p-3">Email</th>
+                <th className="p-3">Nascimento</th>
+                <th className="p-3">Ações</th>
 
               </tr>
 
-            ))}
+            </thead>
 
-          </tbody>
+            <tbody>
 
-        </table>
+              {alunos.map(aluno => (
+
+                <tr key={aluno.id} className="border-t">
+
+                  <td className="p-3">{aluno.id}</td>
+                  <td className="p-3">{aluno.nomecompleto}</td>
+                  <td className="p-3">{aluno.apelido}</td>
+                  <td className="p-3">{aluno.celular}</td>
+                  <td className="p-3">{aluno.email}</td>
+                  <td className="p-3">{aluno.nascimento}</td>
+
+                  <td className="p-3 flex gap-2">
+
+                    <button
+                      className="bg-yellow-400 px-3 py-1 rounded hover:bg-yellow-500"
+                      onClick={()=>{
+
+                        setEditAluno(aluno)
+                        setModalOpen(true)
+
+                      }}
+                    >
+                      Editar
+                    </button>
+
+                    <button
+                      className="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600"
+                      onClick={()=> setDeleteAluno(aluno)}
+                    >
+                      Excluir
+                    </button>
+
+                  </td>
+
+                </tr>
+
+              ))}
+
+            </tbody>
+
+          </table>
+
+        </div>
 
       </div>
 
       {modalOpen &&
+
         <AlunoModal
           aluno={editAluno}
-          onClose={()=> {
+          onClose={()=>{
             setModalOpen(false)
             setEditAluno(null)
           }}
           onSave={salvarAluno}
         />
+
       }
 
       {deleteAluno &&
+
         <ConfirmDelete
           aluno={deleteAluno}
           onCancel={()=> setDeleteAluno(null)}
           onConfirm={excluirAluno}
         />
+
       }
 
     </div>
+
   )
 }

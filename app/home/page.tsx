@@ -1,6 +1,7 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
+import { supabase } from "../lib/supabase"
 import AlunoModal from "../components/alunoModal"
 import ConfirmDelete from "../components/confirmDelete"
 
@@ -13,35 +14,73 @@ type Aluno = {
   nascimento: string
 }
 
-export default function Home() {
+export default function Home(){
 
   const [alunos, setAlunos] = useState<Aluno[]>([])
   const [modalOpen, setModalOpen] = useState(false)
   const [editAluno, setEditAluno] = useState<Aluno | null>(null)
   const [deleteAluno, setDeleteAluno] = useState<Aluno | null>(null)
 
-  function salvarAluno(aluno: Aluno){
+  async function carregarAlunos(){
+
+    const { data } = await supabase
+      .from("alunos")
+      .select("*")
+    
+
+    if(data) setAlunos(data)
+
+      console.log(data)
+
+  }
+
+  useEffect(()=>{
+    carregarAlunos()
+  },[])
+
+  async function salvarAluno(aluno: Aluno){
+
+    const {id, ...novoAluno} = aluno
 
     if(editAluno){
-      setAlunos(alunos.map(a => a.id === aluno.id ? aluno : a))
-      setEditAluno(null)
+
+      await supabase
+        .from("alunos")
+        .update(novoAluno)
+        .eq("id", id)
+
     }else{
-      setAlunos([...alunos, { ...aluno, id: Date.now() }])
+
+      await supabase
+        .from("alunos")
+        .insert([aluno])
+
     }
 
     setModalOpen(false)
+    setEditAluno(null)
+
+    carregarAlunos()
   }
 
-  function excluirAluno(){
+  async function excluirAluno(){
+
     if(deleteAluno){
-      setAlunos(alunos.filter(a => a.id !== deleteAluno.id))
+
+      await supabase
+        .from("alunos")
+        .delete()
+        .eq("id", deleteAluno.id)
+
       setDeleteAluno(null)
+      carregarAlunos()
+
     }
+
   }
 
   return (
-
-    <div className="min-h-screen bg-gray-50 text-gray-800 p-10">
+     <div className="min-h-screen bg-gray-50 text-gray-800 p-10">
 
       <div className="max-w-6xl mx-auto">
 
@@ -152,6 +191,5 @@ export default function Home() {
       }
 
     </div>
-
   )
 }

@@ -3,7 +3,7 @@
 import { useState } from "react"
 
 type Aluno = {
-  id: number
+  id?: number
   nomecompleto: string
   apelido: string
   celular: string
@@ -20,7 +20,7 @@ type Props = {
 export default function AlunoModal({ aluno, onClose, onSave }: Props){
 
   const [form, setForm] = useState<Aluno>({
-    id: aluno?.id || 0,
+    id: aluno?.id,
     nomecompleto: aluno?.nomecompleto || "",
     apelido: aluno?.apelido || "",
     celular: aluno?.celular || "",
@@ -29,7 +29,11 @@ export default function AlunoModal({ aluno, onClose, onSave }: Props){
   })
 
   function update(field: keyof Aluno, value: string){
-    setForm({ ...form, [field]: value })
+    setForm(prev => ({ ...prev, [field]: value }))
+  }
+
+  function salvar(){
+    onSave(form)
   }
 
   return(
@@ -118,7 +122,7 @@ export default function AlunoModal({ aluno, onClose, onSave }: Props){
           </button>
 
           <button
-            onClick={()=> onSave(form)}
+            onClick={salvar}
             className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700"
           >
             Salvar

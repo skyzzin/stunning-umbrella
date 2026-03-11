@@ -53,7 +53,7 @@ export default function Home(){
 
       await supabase
         .from("alunos")
-        .insert([aluno])
+        .insert([novoAluno])
 
     }
 

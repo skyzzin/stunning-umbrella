@@ -3,10 +3,10 @@
 import { useState, useEffect } from "react"
 import { supabase } from "../lib/supabase"
 import AlunoModal from "../components/alunoModal"
-import ConfirmDelete from "../components/confirmDelete"
+import ConfirmDelete, { AlunoProps } from "../components/confirmDelete"
 
 type Aluno = {
-  id: number
+  id?: number
   nomecompleto: string
   apelido: string
   celular: string
@@ -19,7 +19,7 @@ export default function Home(){
   const [alunos, setAlunos] = useState<Aluno[]>([])
   const [modalOpen, setModalOpen] = useState(false)
   const [editAluno, setEditAluno] = useState<Aluno | null>(null)
-  const [deleteAluno, setDeleteAluno] = useState<Aluno | null>(null)
+  const [deleteAluno, setDeleteAluno] = useState<AlunoProps | null>(null)
 
   async function carregarAlunos(){
 
@@ -148,7 +148,7 @@ export default function Home(){
 
                     <button
                       className="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600"
-                      onClick={()=> setDeleteAluno(aluno)}
+                      onClick={()=> setDeleteAluno(aluno as AlunoProps)}
                     >
                       Excluir
                     </button>

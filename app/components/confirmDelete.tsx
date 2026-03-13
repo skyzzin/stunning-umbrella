@@ -1,10 +1,10 @@
-type Aluno = {
+export type AlunoProps = {
   id: number
   nomecompleto: string
 }
 
-type Props = {
-  aluno: Aluno
+ type Props = {
+  aluno: AlunoProps
   onCancel: () => void
   onConfirm: () => void
 }
